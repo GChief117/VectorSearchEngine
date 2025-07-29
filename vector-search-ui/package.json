@@ -1,0 +1,85 @@
+{
+  "name": "vector-search-ui",
+  "version": "1.0.0",
+  "description": "Enterprise Vector Search UI for SentinelOne",
+  "private": true,
+  "proxy": "http://localhost:8000",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^5.18.0",
+    "@mui/material": "^5.18.0",
+    "@reduxjs/toolkit": "^1.9.7",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.68",
+    "@types/react": "^18.2.42",
+    "@types/react-dom": "^18.2.17",
+    "axios": "^1.6.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.3",
+    "react-scripts": "5.0.1",
+    "recharts": "^2.15.4",
+    "socket.io-client": "^4.7.2",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "build:prod": "NODE_ENV=production npm run build",
+    "start:prod": "serve -s build -l 3000",
+    "lint": "eslint src --ext .ts,.tsx",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,css,scss}\"",
+    "typecheck": "tsc --noEmit",
+    "test:coverage": "npm test -- --coverage --watchAll=false",
+    "bundle-report": "webpack-bundle-analyzer build/bundle-stats.json -m static -r build/bundle-report.html",
+    "docker:build": "docker build -t vector-search-ui .",
+    "docker:run": "docker run -p 3000:3000 vector-search-ui",
+    "dev": "concurrently \"npm run start\" \"cd ../embedding_server && poetry run python -m embedding_server.server\"",
+    "redis:start": "docker run -d -p 6379:6379 redis:alpine",
+    "redis:stop": "docker stop $(docker ps -q --filter ancestor=redis:alpine)"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "rules": {
+      "no-console": "warn",
+      "@typescript-eslint/no-unused-vars": "error"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.1.0",
+    "serve": "^14.2.1",
+    "source-map-explorer": "^2.5.3",
+    "webpack-bundle-analyzer": "^4.10.1"
+  },
+  "proxy": "http://localhost:8000"
+}
