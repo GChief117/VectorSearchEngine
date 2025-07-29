@@ -1,0 +1,54 @@
+[tool.poetry]
+name = "embedding_server"
+version = "1.0"
+description = "Basic Embedding Server"
+authors = ["AI Team <ai@example.com>"]
+license = "Proprietary"
+readme = "README.md"
+classifiers = [
+    "Typing :: Typed",
+    "Private :: Do Not Upload", # prevent uploading to PyPI by mistake
+]
+
+[tool.poetry.dependencies]
+python = "^3.11,<3.13"
+fastapi = "^0.109.2"
+pandas = "^2.2.0"
+pyarrow = "^15.0.0"
+aiofiles = "^23.2.1"
+uvicorn = "^0.27.1"
+redis = "^6.2.0"
+aioredis = "^2.0.1"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.8.0"
+ruff = "^0.2.1"
+types-aiofiles = "^23.2.0.20240106"
+
+
+[tool.poetry.group.test.dependencies]
+httpx = "^0.26.0"
+pytest-asyncio = "^0.21.1"
+pytest = "^7.4.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--strict-config",
+    "--strict-markers"
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
